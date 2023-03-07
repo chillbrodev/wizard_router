@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:wizard_router/wizard_router.dart';
+import 'package:wizard_router_example/main.dart';
 
 import '../widgets.dart';
 
@@ -38,7 +39,7 @@ interaction and an imaginary network service.
       actions: [
         WizardAction(
           label: 'Next',
-          onActivated: Wizard.of(context).next,
+          onActivated: () => Actions.invoke(context, WizardNextIntent()),
         ),
       ],
     );

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:wizard_router/wizard_router.dart';
+import 'package:wizard_router_example/main.dart';
 
 import '../models.dart';
 import '../widgets.dart';
@@ -65,12 +66,16 @@ class ChooserPage extends StatelessWidget {
       actions: [
         WizardAction(
           label: 'Back',
-          onActivated: Wizard.of(context).back,
+          onActivated: () => Actions.invoke(
+            context,
+            WizardBackIntent(),
+          ),
         ),
         WizardAction(
           label: 'Next',
           onActivated: model.value != Choice.none
-              ? () => Wizard.of(context).next(arguments: model.value)
+              ? () => Actions.invoke(
+                  context, WizardNextIntent(arguments: model.value))
               : null,
         ),
       ],
