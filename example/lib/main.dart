@@ -43,16 +43,11 @@ class WizardApp extends StatelessWidget {
       home: Actions(
         actions: {
           WizardNextIntent: CallbackAction<WizardNextIntent>(
-            onInvoke: (intent) {
-              print("Next Called");
-              return controller.next(arguments: intent.arguments);
-            },
+            onInvoke: (intent) => controller.next(arguments: intent.arguments),
           ),
-          WizardBackIntent:
-              CallbackAction<WizardBackIntent>(onInvoke: (intent) {
-            print("Back Called");
-            return controller.back(arguments: intent.arguments);
-          })
+          WizardBackIntent: CallbackAction<WizardBackIntent>(
+            onInvoke: (intent) => controller.back(arguments: intent.arguments),
+          )
         },
         child: Wizard(
           controller: controller,
