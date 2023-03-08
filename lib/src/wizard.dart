@@ -236,10 +236,10 @@ class _WizardState extends State<Wizard> {
       state: _routes,
       onGeneratePages: (state, __) {
         _routes = state;
-        return state
-            .mapIndexed((index, settings) =>
-                _createPage(context, index: index, settings: settings))
-            .toList();
+        return state.mapIndexed((index, settings) {
+          print("WizardRouteGen: ${settings.name}");
+          return _createPage(context, index: index, settings: settings);
+        }).toList();
       },
       observers: [_WizardFlowObserver(widget.observers), HeroController()],
       onComplete: (state) async {
