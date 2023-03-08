@@ -18,6 +18,17 @@ class WizardController extends ChangeNotifier {
   WizardControllerAction action = WizardControllerAction.unknown;
   Object? arguments;
 
+  /// Since each Page is wrapped with WizardScope we must ensure there is only
+  /// ever one listener. This overrides ensures there is only one listener.
+  /// Since the WizardScope takes in the Controller, the listener can be
+  /// added N times, depending on how many routes are generated.
+  @override
+  void addListener(VoidCallback listener) {
+    if (!hasListeners) {
+      super.addListener(listener);
+    }
+  }
+
   void home() {
     action = WizardControllerAction.home;
     notifyListeners();
